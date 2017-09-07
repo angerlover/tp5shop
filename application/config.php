@@ -54,7 +54,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 默认模块名
-    'default_module'         => 'Home',
+    'default_module'         => 'home',
     // 禁止访问模块
     'deny_module_list'       => ['common'],
     // 默认控制器名
@@ -99,7 +99,7 @@ return [
     // 域名根，如thinkphp.cn
     'url_domain_root'        => '',
     // 是否自动转换URL中的控制器和操作名
-    'url_convert'            => true,
+    'url_convert'            => false,
     // 默认的访问控制器层
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
@@ -119,7 +119,7 @@ return [
 
     'template'               => [
         // 模板引擎类型 支持 php think 支持扩展
-        'type'         => 'Think',
+        'type'         => 'think',
         // 模板路径
         'view_path'    => '',
         // 模板后缀
@@ -139,6 +139,7 @@ return [
     // 视图输出字符串内容替换
     'view_replace_str'       => [
     	'__PUBLIC__' => '/public',
+        '__ACTION__' => \think\Request::instance()->action(),
     	
     ],
     // 默认跳转页面对应的模板文件
