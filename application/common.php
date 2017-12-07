@@ -25,3 +25,5 @@ function removeXSS($data)
     // 执行过滤
     return $_clean_xss_obj->purify($data);
 }
+
+

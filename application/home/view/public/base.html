@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>京西商城</title>
+    <link rel="stylesheet" href="__PUBLIC__/Home/style/base.css" type="text/css">
+    <link rel="stylesheet" href="__PUBLIC__/Home/style/global.css" type="text/css">
+
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/index.js"></script>
+</head>
+<body>
+<!--包含最顶部的导航-->
+{include file="public/top"/}
+
+
+<div style="clear:both;"></div>
+
+<!-- 头部 start -->
+<div class="header w1210 bc mt15">
+    <!-- 头部上半部分 start 包括 logo、搜索、用户中心和购物车结算 -->
+    {include file="public/search"/}
+    <!-- 头部上半部分 end -->
+
+    <div style="clear:both;"></div>
+
+    <!-- 导航条部分 start -->
+    {include file="public/nav"/}
+    <!-- 导航条部分 end -->
+</div>
+<!-- 头部 end-->
+
+<div style="clear:both;"></div>
+
+{__CONTENT__}
+
+
+<div style="clear:both;"></div>
+<!--包含底部-->
+{include file="public/bottom"/}
+
+</body>
+</html>

@@ -2,7 +2,7 @@
 namespace app\home\controller;
 use think\Controller;
 
-class Index extends Controller
+class Index extends Nav
 {
     /**
      * @return \think\response\View
@@ -10,9 +10,23 @@ class Index extends Controller
      */
     public function index()
     {
-        // 获取首页推荐楼层数据
         $catModel = model('admin/Category');
+        // 获取推荐楼层的数据
         $floorData = $catModel->getFloorData();
-        var_dump($floorData);die;
+        // 传值
+//        var_dump($floorData);die;
+        $this->assign(['floorData'=>$floorData,'isNav' => true]);
+
+        // 渲染
+        return view();
+    }
+
+    public function test()
+    {
+        $catModel = model('admin/Category');
+        $data = $catModel->getChildren(1);
+        $data = $catModel->getChildren(2);
+
+        dump($data);die;
     }
 }
