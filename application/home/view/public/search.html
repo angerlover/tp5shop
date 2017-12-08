@@ -65,14 +65,14 @@
     <!-- 用户中心 end-->
 
     <!-- 购物车 start -->
-    <div class="cart fl">
+    <div  class="cart fl">
         <dl>
             <dt>
-                <a href="">去购物车结算</a>
+                <a id="cart" target="_blank" href="<?php echo url('Cart/index');?>">去购物车结算</a>
                 <b></b>
             </dt>
             <dd>
-                <div class="prompt">
+                <div id="cartContent" class="prompt">
                     购物车中还没有商品，赶紧选购吧！
                 </div>
             </dd>
@@ -82,3 +82,21 @@
 </div>
 <script type="text/javascript" src="__PUBLIC__/Home/js/header.js"></script>
 <link rel="stylesheet" href="__PUBLIC__/Home/style/header.css" type="text/css">
+<script>
+    <!--ajax获取购物车数据-->
+    $('#cart').mouseover(function(){
+        $.ajax({
+           url:'<?php echo url('Cart/ajaxGetCart');?>',
+            type:'GET',
+            dataType:'json',
+            success:function(data){
+             if(data != 0)
+             {
+                 console.log(data);
+             }
+        },
+
+
+        });
+    });
+</script>

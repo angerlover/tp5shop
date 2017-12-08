@@ -34,7 +34,13 @@ class Member extends Controller
         {
             if($memberModel->login()) // 登录检查
             {
-                return $this->error('登录成功',url('/'));
+                // 登录成功跳转到登录之前的页面
+                $url = '/';
+                if(session('url'))
+                {
+                    $url = session('url');
+                }
+                return $this->success('登录成功',$url);
             }
             else
             {

@@ -4,6 +4,7 @@ namespace app\home\controller;
 
 use think\Controller;
 use think\Request;
+use think\View;
 
 /**
  * 购物车控制器
@@ -75,70 +76,8 @@ class Cart extends Controller
     public function index()
     {
         // 取出购物车的数据
-        if($userid = session('id'))
-        {
-            // 登录从数据库取
-            $data = db('cart')->where('member_id',$userid)->select();
-//            dump($data);die;
-            $res = [];
-            $totalPrice = null;
-            foreach($data as $k=>$v)
-            {
-                $res[$v['id']]['logo'] = db('goods')->where('id',$v['goods_id'])->value('sm_logo');
-                $res[$v['id']]['goods_name'] = db('goods')->where('id',$v['goods_id'])->value('goods_name');
-                $res[$v['id']]['amount'] = $v['goods_number'];
-                $res[$v['id']]['price'] = model('Member')->getPrice($v['goods_id']);
-                $goods_attr_ids = explode(',',$v['goods_attr_id']);
-                $totalPrice += $res[$v['id']]['amount']*$res[$v['id']]['price'];
-                $res[$v['id']]['goods_id'] = $v['goods_id'];
-                foreach ($goods_attr_ids as $k1=>$v1)
-                {
-                    $res[$v['id']]['goods_attr'][] = db('goods_attr')->alias('a')
-                        ->field('b.attr_name,a.attr_value')
-                        ->join('__ATTRIBUTE__ b','a.attr_id = b.id')
-                        ->where('a.id',$v1)
-                        ->select();
-                }
-            }
-//            dump($res);die;
-            $this->assign(['data'=>$res,'totalPrice'=>$totalPrice]);
-        }
-        else // 没登录从cookie中取
-        {
-            $data = isset($_COOKIE['cart'])?unserialize($_COOKIE['cart']):[];
-//            var_dump($data);die;
-            $res =  [];
-            $totalPrice = 0;
-            foreach($data as $k=>$v)
-            {
-                $temp = explode('-',$k);
-                $goodsid = $temp[0];
-                $goods_attr_id = $temp[1];
-                $goods_attr_id = explode(',',$goods_attr_id);
-                // 商品的属性
-                foreach($goods_attr_id as $v1)
-                {
-                    $res[$k]['goods_attr'][] = db('goods_attr')->alias('a')
-                        ->field('b.attr_name,a.attr_value')
-                        ->join('__ATTRIBUTE__ b','a.attr_id = b.id')
-                        ->where('a.id',$v1)
-                        ->select();
-                }
-                // 商品logo
-                $res[$k]['logo'] = db('goods')->where('id',$goodsid)->value('sm_logo');
-                // 商品名称
-                $res[$k]['goods_name'] = db('goods')->where('id',$goodsid)->value('goods_name');
-                // 商品数量
-                $res[$k]['amount'] = $v;
-                // 获取商品的价格（模型自定义的方法）
-                $res[$k]['price'] = model('Member')->getPrice($goodsid);
-                $totalPrice += $res[$k]['amount']*$res[$k]['price'];
-                // 追加一个goodsid
-                $res[$k]['goods_id'] = $goodsid;
-            }
-//            var_dump($res);die;
-            $this->assign(['data'=>$res,'totalPrice'=>$totalPrice]);
-        }
+        $data = model('Cart')->getCart();
+        $this->assign(['data'=>$data['data'],'totalPrice'=>$data['price']]);
         return view();
     }
 
@@ -168,4 +107,103 @@ class Cart extends Controller
         return redirect('Cart/index');
 
     }
+
+
+    /**
+     * 购物车点击结算后，最后一次清算购物车的数据并且显示确认订单页面
+     */
+    public function prepareForOrder()
+    {
+        /***依然分两种情况，未登录先把最新修改的购物车数据存入cookie中，然后再取出最新的购物车***/
+
+        // 登录之后则修改相应的数据库后进入确认订单页面
+        if($userid = session('id'))
+        {
+            $data = request()->post();
+            // 如果有提交过来的数据，说明是本身已经登录了，需要修改购物车表的数据
+            if($data)
+            {
+                foreach($data['key'] as $k=>$v)
+                {
+                    db('cart')->where('id',$v)->update(['goods_number'=>$data['amount'][$k]]);
+                }
+            }
+            // 取出数据进入确认订单页面
+            $data = db('cart')->where('member_id',$userid)->select();
+            $res = [];
+            $count = 0;
+            $totalPrice = null;
+            foreach($data as $k=>$v)
+            {
+                $res[$v['id']]['logo'] = db('goods')->where('id',$v['goods_id'])->value('sm_logo');
+                $res[$v['id']]['goods_name'] = db('goods')->where('id',$v['goods_id'])->value('goods_name');
+                $res[$v['id']]['amount'] = $v['goods_number'];
+                $count += $res[$v['id']]['amount'];
+                $res[$v['id']]['price'] = model('Member')->getPrice($v['goods_id']);
+                $goods_attr_ids = explode(',',$v['goods_attr_id']);
+                $totalPrice += $res[$v['id']]['amount']*$res[$v['id']]['price'];
+                $res[$v['id']]['goods_id'] = $v['goods_id'];
+                foreach ($goods_attr_ids as $k1=>$v1)
+                {
+                    $res[$v['id']]['goods_attr'][] = db('goods_attr')->alias('a')
+                        ->field('b.attr_name,a.attr_value')
+                        ->join('__ATTRIBUTE__ b','a.attr_id = b.id')
+                        ->where('a.id',$v1)
+                        ->select();
+                }
+            }
+//            dump($res);die;
+            $this->assign(['data'=>$res,'totalPrice'=>$totalPrice,'count'=>$count]);
+
+            return view();
+        }
+        else // 没有登录则把cookie中的数据更新一遍，提示登录，登录后跳转回来
+        {
+
+            $url = request()->url();//TODO 看看这个到底对不对,是对的
+            session('url',$url);
+            $newData = request()->post();
+            $data = unserialize(cookie('cart'));
+            // 根据传来的参数，修改原data数据
+            foreach($newData['key'] as $k=>$v)
+            {
+                $data[$v] = $newData['amount'][$k];
+            }
+            // 把修改好的值重新写入cookie
+            cookie('cart',serialize($data));
+            // 提示用户登录，然后跳转回来就可以直接到确认订单页面了
+            return $this->error('请登录后再操作！',url('Member/login'));
+
+        }
+    }
+
+    /**
+     * ajax获取购物车数据
+     */
+    public function ajaxGetCart()
+    {
+        // 判断登录状态
+        // 如果登录从表中取
+        if($userid = session('id'))
+        {
+            $data = db('cart')->where('member_id',$userid)->field('goods_id,goods_number')->select();
+
+        }
+        else // 没有登录从cookie中获取
+        {
+            $data = isset($_COOKIE['cart']) ? unserialize(cookie('cart')):[];
+        }
+        // 如果取出了数据
+        if($data)
+        {
+            echo json_encode($data);
+        }
+        else
+        {
+            echo json_encode([0]);
+        }
+
+    }
+
+
 }

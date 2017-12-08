@@ -46,7 +46,7 @@ class Member extends Model
                 // 存入session
                 session('id',$id);
                 session('username',$username);
-                // 把cookie中的购物车数据存入数据库中,清空cookie
+                // 把cookie中的购物车数据存入数据库中,并清空cookie
                 if(isset($_COOKIE['cart']))
                 {
                     $data = unserialize($_COOKIE['cart']);
@@ -55,11 +55,23 @@ class Member extends Model
                         $temp = explode('-',$k);
                         $goods_id = $temp[0];
                         $goods_attr_ids = $temp[1];
-                        db('Cart')->insert(['member_id'=>$id,'goods_id'=>$goods_id,'goods_number'=>$v,'goods_attr_id'=>$goods_attr_ids]);
+                        $ids = explode(',',$goods_attr_ids);
+                        sort($ids,1);
+                        $final = implode(',',$ids);
+                        // 如果表中已经有这条记录则直接修改数量
+                        if(db('cart')->where(['member_id'=>$id,'goods_id'=>$goods_id,'goods_attr_id'=>$final])->find())
+                        {
+                            db('cart')->where(['member_id'=>$id,'goods_id'=>$goods_id,'goods_attr_id'=>$final])->setInc('goods_number',$v);
+                        }
+                        else
+                        {
+                            // 表中没有这条记录则添加
+                            db('cart')->insert(['member_id'=>$id,'goods_id'=>$goods_id,'goods_number'=>$v,'goods_attr_id'=>$final]);
+                        }
                     }
                     cookie('cart',null);
-                }
 
+                }
                 return true;
             }
             else

@@ -8,7 +8,7 @@ class Index //extends Controller
 {
     public function index()
     {
-        return '我还是很喜欢你';
+        return request()->url();
     }
 
     /**
