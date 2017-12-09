@@ -90,9 +90,18 @@
             type:'GET',
             dataType:'json',
             success:function(data){
-             if(data != 0)
+             if(data.price != null)
              {
-                 console.log(data);
+                 var html = '';
+                 $.each(data.data,function(k,v){
+
+                     html += '<div>'
+                     html += "<img src='__PUBLIC__/Upload/"+v.logo+"'/>  <span>"+v.goods_name+"</span> ";
+                     html += '</div>';
+
+                 });
+                 html += '<div style="background-color: #3c763d">总价 '+data.price+'</div>'
+                 $('#cartContent').html(html);
              }
         },
 

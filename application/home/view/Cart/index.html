@@ -40,37 +40,40 @@
             <table>
                 <thead>
                 <tr>
-                    <th class="col1">商品名称</th>
-                    <th class="col2">商品信息</th>
-                    <th class="col3">单价</th>
-                    <th class="col4">数量</th>
-                    <th class="col5">小计</th>
-                    <th class="col6">操作</th>
+                    <th class="col1">全选</th>
+                    <th class="col2">商品名称</th>
+                    <th class="col3">商品信息</th>
+                    <th class="col4">单价</th>
+                    <th class="col5">数量</th>
+                    <th class="col6">小计</th>
+                    <th class="col7">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php foreach($data as $k=>$v):;?>
                 <tr>
-                    <td class="col1"><a href=""><img src="__PUBLIC__/Upload/{$v.logo}" alt="" /></a>  <strong><a href="">{$v.goods_name}</a></strong></td>
-                    <td class="col2">
+                    <td class="col7"><input type="checkbox"></td>
+                    <td class="col6"><a href=""><img src="__PUBLIC__/Upload/{$v.logo}" alt="" /></a>  <strong><a href="">{$v.goods_name}</a></strong></td>
+                    <td class="col5">
                         <?php foreach($v['goods_attr'] as $k1=>$v1):;?>
                         <?php foreach($v1 as $k2=>$v2):;?>
                         <p>{$v2.attr_name}：{$v2.attr_value}</p>
                         <?php endforeach;?>
                         <?php endforeach;?>
                     </td>
-                    <td class="col3">￥<span>{$v.price}</span></td>
-                    <td class="col4">
+                    <td class="col4">￥<span>{$v.price}</span></td>
+                    <td class="col3">
                         <a href="javascript:;" class="reduce_num"></a>
                         <input type="text" name="amount[]" value="{$v.amount}" class="amount"/>
                         <a href="javascript:;" class="add_num"></a>
                     </td>
-                    <td class="col5">￥<span><?php echo $v['price']*$v['amount']; ?></span></td>
-                    <td class="col6">
+                    <td class="col2">￥<span><?php echo $v['price']*$v['amount']; ?></span></td>
+                    <td class="col1">
                         <a href="<?php echo url('Cart/delete',['id'=>$k]);?>">
                             删除
                         </a>
                 </tr>
+                <!--key代表已登录用户的cart表的id-->
                 <input type="hidden" name="key[]" value="{$k}">
                 <?php endforeach;?>
                 </tbody>
@@ -94,3 +97,18 @@
 </body>
 </html>
 <link rel="stylesheet" href="__PUBLIC__/Home/style/cart.css" type="text/css">
+<script>
+    <!--控制提交表单时,如果没有选中的行就禁止了-->
+    $('form').submit(function(){
+        // 选择没有选中的那些行
+        var uncheck = $(":checkbox[checked!='checked']");
+        $.each(uncheck,function(k,v){
+            console.log($(v).parent().parent().find('input.amount').val());
+//            alert($(v).parent().find('input.amount').val());
+
+
+        });
+        return false;
+
+    });
+</script>

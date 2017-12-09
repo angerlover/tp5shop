@@ -40,14 +40,14 @@
 		<div class="fillin_hd">
 			<h2>填写并核对订单信息</h2>
 		</div>
-
+        <form action="<?php echo url('Order/save');?>" method="post">
 		<div class="fillin_bd">
 			<!-- 收货人信息  start-->
 			<div class="address">
 				<h3>收货人信息 <a href="javascript:;" id="address_modify">[修改]</a></h3>
 				<div class="address_info">
-					<p>王超平  13555555555 </p>
-					<p>北京 昌平区 西三旗 建材城西路金燕龙办公楼一层 </p>
+					<p id="p_name">王超平  13555555555 </p>
+					<p id="p_address">北京 昌平区 西三旗 建材城西路金燕龙办公楼一层 </p>
 				</div>
 
 				<div class="address_select none">
@@ -66,50 +66,31 @@
 						</li>
 						<li><input type="radio" name="address" class="new_address"  />使用新地址</li>
 					</ul>	
-					<form action="" class="none" name="address_form">
 						<ul>
 							<li>
 								<label for=""><span>*</span>收 货 人：</label>
-								<input type="text" name="" class="txt" />
+								<input type="text" name="shr_name" class="txt" />
 							</li>
 							<li>
 								<label for=""><span>*</span>所在地区：</label>
-								<select name="" id="">
-									<option value="">请选择</option>
-									<option value="">北京</option>
-									<option value="">上海</option>
-									<option value="">天津</option>
-									<option value="">重庆</option>
-									<option value="">武汉</option>
-								</select>
-
-								<select name="" id="">
-									<option value="">请选择</option>
-									<option value="">朝阳区</option>
-									<option value="">东城区</option>
-									<option value="">西城区</option>
-									<option value="">海淀区</option>
-									<option value="">昌平区</option>
-								</select>
-
-								<select name="" id="">
-									<option value="">请选择</option>
-									<option value="">西二旗</option>
-									<option value="">西三旗</option>
-									<option value="">三环以内</option>
-								</select>
+                                <select name="shr_province" id="province"></select>
+                                <select name="shr_city" id="city">
+                                    <option value="">请选择</option>
+                                </select>
+                                <select name="shr_city" id="area">
+                                    <option value="">请选择</option>
+                                </select>
 							</li>
 							<li>
-								<label for=""><span>*</span>详细地址：</label>
-								<input type="text" name="" class="txt address"  />
+								<label for="shr_address"><span>*</span>详细地址：</label>
+								<input id="shr_address" type="text" name="shr_address" class="txt address"  />
 							</li>
 							<li>
-								<label for=""><span>*</span>手机号码：</label>
-								<input type="text" name="" class="txt" />
+								<label for="shr_tel"><span>*</span>手机号码：</label>
+								<input id="shr_tel" type="text" name="shr_tel" class="txt" />
 							</li>
 						</ul>
-					</form>
-					<a href="" class="confirm_btn"><span>保存收货人信息</span></a>
+					<a id="confirm_address" href="javascript:void(0);" class="confirm_btn"><span>保存收货人信息</span></a>
 				</div>
 			</div>
 			<!-- 收货人信息  end-->
@@ -118,8 +99,8 @@
 			<div class="delivery">
 				<h3>送货方式 <a href="javascript:;" id="delivery_modify">[修改]</a></h3>
 				<div class="delivery_info">
-					<p>普通快递送货上门</p>
-					<p>送货时间不限</p>
+					<p id="delivery_method">普通快递送货上门</p>
+					<p id="delivery_time">送货时间不限</p>
 				</div>
 
 				<div class="delivery_select none">
@@ -134,11 +115,11 @@
 						<tbody>
 							<tr class="cur">	
 								<td>
-									<input type="radio" name="delivery" checked="checked" />普通快递送货上门
-									<select name="" id="">
-										<option value="">时间不限</option>
-										<option value="">工作日，周一到周五</option>
-										<option value="">周六日及公众假期</option>
+									<input value="普通快递送货上门" type="radio" name="delivery" checked="checked" />普通快递送货上门
+									<select name="delivery_time" id="trans_time">
+										<option value="时间不限">时间不限</option>
+										<option value="工作日，周一到周五">工作日，周一到周五</option>
+										<option value="周六日及公众假期">周六日及公众假期</option>
 									</select>
 								</td>
 								<td>￥10.00</td>
@@ -146,25 +127,25 @@
 							</tr>
 							<tr>
 								
-								<td><input type="radio" name="delivery" />特快专递</td>
+								<td><input value="特快专递" type="radio" name="delivery" />特快专递</td>
 								<td>￥40.00</td>
 								<td>每张订单不满499.00元,运费40.00元, 订单4...</td>
 							</tr>
 							<tr>
 								
-								<td><input type="radio" name="delivery" />加急快递送货上门</td>
+								<td><input value="加急快递送货上门" type="radio" name="delivery" />加急快递送货上门</td>
 								<td>￥40.00</td>
 								<td>每张订单不满499.00元,运费40.00元, 订单4...</td>
 							</tr>
 							<tr>
 
-								<td><input type="radio" name="delivery" />平邮</td>
+								<td><input value="平邮" type="radio" name="delivery" />平邮</td>
 								<td>￥10.00</td>
 								<td>每张订单不满499.00元,运费15.00元, 订单4...</td>
 							</tr>
 						</tbody>
 					</table>
-					<a href="" class="confirm_btn"><span>确认送货方式</span></a>
+					<a href="javascript:void(0);" id="confirm_trans" class="confirm_btn"><span>确认送货方式</span></a>
 				</div>
 			</div> 
 			<!-- 配送方式 end --> 
@@ -173,29 +154,30 @@
 			<div class="pay">
 				<h3>支付方式 <a href="javascript:;" id="pay_modify">[修改]</a></h3>
 				<div class="pay_info">
-					<p>货到付款</p>
+					<p id="pay_content">货到付款</p>
 				</div>
 
 				<div class="pay_select none">
-					<table> 
+					<table>
 						<tr class="cur">
-							<td class="col1"><input type="radio" name="pay" />货到付款</td>
+							<td class="col1"><input checked="checked" value="货到付款" type="radio" name="pay" />货到付款</td>
 							<td class="col2">送货上门后再收款，支持现金、POS机刷卡、支票支付</td>
 						</tr>
 						<tr>
-							<td class="col1"><input type="radio" name="pay" />在线支付</td>
+							<td class="col1"><input value="在线支付" type="radio" name="pay" />在线支付</td>
 							<td class="col2">即时到帐，支持绝大数银行借记卡及部分银行信用卡</td>
 						</tr>
 						<tr>
-							<td class="col1"><input type="radio" name="pay" />上门自提</td>
+							<td class="col1"><input value="上门自提" type="radio" name="pay" />上门自提</td>
 							<td class="col2">自提时付款，支持现金、POS刷卡、支票支付</td>
 						</tr>
 						<tr>
-							<td class="col1"><input type="radio" name="pay" />邮局汇款</td>
+							<td class="col1"><input value="邮局汇款" type="radio" name="pay" />邮局汇款</td>
 							<td class="col2">通过快钱平台收款 汇款后1-3个工作日到账</td>
 						</tr>
 					</table>
-					<a href="" class="confirm_btn"><span>确认支付方式</span></a>
+                        <input type="submit" value="提交">
+					<a  id="confirm_pay_method" href="javascript:void(0);" class="confirm_btn"><span>确认支付方式</span></a>
 				</div>
 			</div>
 			<!-- 支付方式  end-->
@@ -209,13 +191,12 @@
 				</div>
 
 				<div id="fapiao_setting" class="receipt_select none">
-					<form action="<?php echo url('Order/save');?>" method="post">
-						<ul id="">
+						<ul>
 							<li>
 								<label for="">发票抬头：</label>
 								<input type="radio" name="type" checked="checked" class="personal" value="个人" />个人
 								<input type="radio" name="type" class="company" value="单位" />单位
-								<input type="text" class="txt company_input" disabled="disabled" />
+								<input name="fp_company" id="fp_address" type="text" class="txt company_input" disabled="disabled" />
 							</li>
 							<li>
 								<label for="">发票内容：</label>
@@ -224,12 +205,16 @@
 								<input type="radio" name="content" value="体育休闲" />体育休闲
 								<input type="radio" name="content" value="耗材" />耗材
 							</li>
-						</ul>						
-					</form>
+						</ul>
+
 					<a id="confirm_fapiao" href="javascript:void(0);"  class="confirm_btn"><span>确认发票信息</span></a>
 				</div>
 			</div>
 			<!-- 发票信息 end-->
+            <!--隐藏域 订单所有的商品信息-->
+            <input type="hidden" name="goods" value='<?php echo serialize($data);?>'>
+            <input type="hidden" name="total_price" value="{$totalPrice}">
+            </form>
 
 			<!-- 商品清单 start -->
 			<div class="goods">
@@ -328,8 +313,71 @@
 </body>
 </html>
 <script>
-    $('#submit_order').click(function(){
+    <!--地址三级联动-->
+    $(function () {
+        // ajax获取并设置省的信息
+        $.ajax({
+            type:'get',
+            url:'__PUBLIC__/Home/ChinaArea.xml',
+            dataType:'xml',
+            success:function (msg) {
+                var provinces = $(msg).find('province');
+                $('#province').append('<option value="">请选择</option>');
+                provinces.each(function (k,v) {
+                    var province = $(v).attr('province');
+                    var option = '<option value="'+province+'">'+province+'</option>';
+                    $('#province').append(option);
+                });
+            },
+        });
+    });
 
+    // 选择市
+    $('#province').change(function () {
+        // 首先清空
+        $('#city').empty();
+        $('#city').append('<option>请选择</option>');
+        var provinceName = $(this).find(':selected').text();
+        $.ajax({
+            type:'get',
+            url:'__PUBLIC__/Home/ChinaArea.xml',
+            dataType:'xml',
+            success:function (msg) {
+                var cities = $(msg).find('province[province='+provinceName+']').children();
+                console.log(cities);
+                $(cities).each(function (k,v) {
+                    var option = '<option>'+$(v).attr('City')+'</option>';
+                    $('#city').append(option);
+                });
+            },
+        });
+    });
+    // 选择地区
+    $('#city').change(function () {
+        $('#area').empty();
+        $('#area').append('<option>请选择</option>');
+        var cityName = $(this).find(':selected').text();
+        $.ajax({
+            type:'get',
+            url:'__PUBLIC__/Home/ChinaArea.xml',
+            dataType:'xml',
+            success:function (msg) {
+                var areas = $(msg).find('City[City='+cityName+']').children();
+                $(areas).each(function (k,v) {
+                    var option = '<option>'+$(v).attr('Piecearea')+'</option>';
+                    $('#area').append(option);
+                });
+            },
+        });
+    });
+
+
+
+
+    <!--提交订单-->
+    $('#submit_order').click(function(){
+        console.log($('form'));
+        $('form:lt(5)').submit();
 
     });
 
@@ -337,17 +385,17 @@
     $('#confirm_fapiao').click(function()
     {
         // 获取发票的方式
-        var fapiao = $(":radio[name='content']:checked").val();
-        $('#fapiao_type').html(fapiao);
+        var fapiao_content = $(":radio[name='content']:checked").val();
+        $('#fapiao_content').html(fapiao_content);
         // 获取发票的内容
-        var fapiao_content = $(":radio[name='type']:checked").val();
-        if(fapiao_content == '单位')
+        var fapiao_type = $(":radio[name='type']:checked").val();
+        if(fapiao_type == '单位')
         {
-            $('#fapiao_content').html('单位:'+fapiao_content);
+            $('#fapiao_type').html('单位:'+$('#fp_address').val());
         }
         else
         {
-            $('#fapiao_content').html(fapiao_content);
+            $('#fapiao_type').html(fapiao_type);
         }
 
         //隐藏
@@ -355,4 +403,51 @@
         $('.receipt_info').show();
         $('#receipt_modify').show();
     });
+
+        // 设置支付方式
+        $('#confirm_pay_method').click(function(){
+            var pay_content = $(":radio[name='pay']:checked").val();
+            $('#pay_content').html(pay_content);
+            $('.pay_select').hide();
+            $('.pay_info').show();
+            $('#pay_modify').show();
+        });
+        // 送货方式
+        $('#confirm_trans').click(function(){
+           var trans_method = $(":radio[name='delivery']:checked").val();
+           $('#delivery_method').html(trans_method);
+           if(trans_method == '普通快递送货上门')
+           {
+               $('#delivery_time').html($('#trans_time option:selected').val());
+           }
+           else
+           {
+               $('#delivery_time').hide();
+           }
+
+           $('#delivery_modify').show();
+           $('.delivery_select').hide();
+           $('.delivery_info').show();
+
+        });
+
+        // 地址
+        $('#confirm_address').click(function()
+        {
+
+            var name = $(":text[name=shr_name]").val();
+            var tel = $(":text[name='shr_tel']").val();
+            var address = $(":text[name='shr_address']").val();
+
+            $('#p_name').html(name+" "+tel);
+            $('#p_address').html(address);
+
+
+
+            $('.address_select').hide();
+            $('.address_info').show();
+            $('#address_modify').show();
+
+        });
+
 </script>

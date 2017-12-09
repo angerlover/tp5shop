@@ -7,7 +7,7 @@ use think\Model;
 class Cart extends Model
 {
 
-    /**
+    /**5
      * 检查库存量
      */
     public function checkGoodsNumber($goodsid,$number,$goods_attr_id)
@@ -26,9 +26,10 @@ class Cart extends Model
      */
     public function getCart()
     {
+
+        // 登录从数据库取
         if($userid = session('id'))
         {
-            // 登录从数据库取
             $data = db('cart')->where('member_id',$userid)->select();
 //            dump($data);die;
             $res = [];
@@ -39,6 +40,10 @@ class Cart extends Model
                 $res[$v['id']]['goods_name'] = db('goods')->where('id',$v['goods_id'])->value('goods_name');
                 $res[$v['id']]['amount'] = $v['goods_number'];
                 $res[$v['id']]['price'] = model('Member')->getPrice($v['goods_id']);
+                if(empty($res[$v['id']]['price']))
+                {
+                    $res[$v['id']]['price'] = db('goods')->where('id',$v['goods_id'])->value('shop_price');
+                }
                 $goods_attr_ids = explode(',',$v['goods_attr_id']);
                 $totalPrice += $res[$v['id']]['amount']*$res[$v['id']]['price'];
                 $res[$v['id']]['goods_id'] = $v['goods_id'];
@@ -82,13 +87,16 @@ class Cart extends Model
                 $res[$k]['goods_name'] = db('goods')->where('id',$goodsid)->value('goods_name');
                 // 商品数量
                 $res[$k]['amount'] = $v;
-                // 获取商品的价格（模型自定义的方法）
+                // 获取商品的价格（模型自定义的方法）TODO 但是只能获取登录了会员的价格啊
                 $res[$k]['price'] = model('Member')->getPrice($goodsid);
+                if(empty($res[$k]['price']))
+                {
+                    $res[$k]['price'] = db('goods')->where('id',$goodsid)->value('shop_price');
+                }
                 $totalPrice += $res[$k]['amount']*$res[$k]['price'];
                 // 追加一个goodsid
                 $res[$k]['goods_id'] = $goodsid;
             }
-
             $cart['data'] = $res;
             $cart['price'] = $totalPrice;
             return $cart;

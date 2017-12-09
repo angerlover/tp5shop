@@ -174,12 +174,12 @@
 										<a class="{if condition="$k1==0"}selected{/if}" href="javascript:;"><?php echo $v1[0];?> <input type="radio" name="goods_attr_id[{$k}]" value="<?php echo $v1[1];?>" {if condition="$k1==0"}checked="checked"{/if} />
                                         </a>
                                         {/foreach}
-                                        <input id="hidden_id" type="hidden" name="goods_id" value="{$info.id}">
+
 									</dd>
 								</dl>
 							</li>
                             {/foreach}
-
+                            <input id="hidden_id" type="hidden" name="goods_id" value="{$info.id}">
 							<li>
 								<dl>
 									<dt>购买数量：</dt>

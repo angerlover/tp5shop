@@ -121,9 +121,18 @@ class Member extends Controller
      */
     function getMemberPrice()
     {
+        // 如果没有登录无法确定当前会员的分组，直接显示“登录后查看”
+        if(!session('id'))
+        {
+            echo json_encode(['error'=>1]);
+        }
         $id = request()->param('id');
         $goodsid = request()->param('goodsid');
         $price = model('Member')->getMemberPrice($id,$goodsid);
+        if(!$price) // 如果没有设置过会员价，直接显示本店价
+        {
+            $price = db('goods')->where('id',$goodsid)->value('shop_price');
+        }
         echo json_encode(['price'=>$price]);
 
     }
