@@ -49,6 +49,7 @@ class Member extends Model
                 // 把cookie中的购物车数据存入数据库中,并清空cookie
                 if(isset($_COOKIE['cart']))
                 {
+                    // 先处理原来的cookie数据
                     $data = unserialize($_COOKIE['cart']);
                     foreach($data as $k=>$v)
                     {
@@ -69,7 +70,17 @@ class Member extends Model
                             db('cart')->insert(['member_id'=>$id,'goods_id'=>$goods_id,'goods_number'=>$v,'goods_attr_id'=>$final]);
                         }
                     }
+                    // 清空cookie的购物车数据
                     cookie('cart',null);
+
+                }
+                // 取出把登录之前要提交订单的购物车数据另存到session中
+                if(isset($_COOKIE['toBuy']))
+                {
+                    $toBuy = unserialize($_COOKIE['toBuy']);
+                    session('toBuy',$toBuy);
+                    // 清空
+                    cookie('toBuy',null);
 
                 }
                 return true;

@@ -164,6 +164,51 @@ class Cart extends Controller
                 $this->assign(['data'=>$res,'totalPrice'=>$totalPrice,'count'=>$count]);
                 return view();
             }
+            else //②没有提交过来的数据说明是登录之后跳转过来的
+            {
+                // 从session中获取最新的要提交的购物车数据
+                $toBuy =  session('toBuy'); //这里的toBuy是形如和没登录时传递过来的数据一样，形如amount和key的数组
+//                halt($toBuy);
+                $res = [];
+                $totalPrice = 0;
+                $count = 0;
+                foreach($toBuy['key'] as $k=>$v)
+                {
+                    // 拼装
+                    $split = explode('-',$v);
+                    $goods_id = $split[0];
+                    $goods_attr_ids = $split[1];
+                    $ids = explode(',',$goods_attr_ids);
+                    sort($ids,1);
+                    $final = implode(',',$ids);
+                    // 从表中取数据，此时表已经是最新的了，只是取出要提交订单的数据而已
+                    $temp = db('cart')->where(['member_id'=>$userid,'goods_id'=>$goods_id,'goods_attr_id'=>$final])->find();
+                    // 拼装最终的数据
+                    $res[$temp['id']]['logo'] = db('goods')->where('id',$goods_id)->value('sm_logo');
+                    $res[$temp['id']]['goods_name'] = db('goods')->where('id',$goods_id)->value('goods_name');
+                    $res[$temp['id']]['amount'] = $toBuy['amount'][$k];
+                    $count += $res[$temp['id']]['amount'];
+                    $res[$temp['id']]['price'] = model('Member')->getPrice($goods_id);
+                    if(empty($res[$temp['id']]['price']))
+                    {
+                        $res[$temp['id']]['price'] = db('goods')->where('id',$goods_id)->value('shop_price');
+                    }
+                    $totalPrice += $res[$temp['id']]['price'];
+                    $res[$temp['id']]['goods_id'] = $goods_id;
+                    foreach($ids as $k1=>$v1)
+                    {
+                        $res[$temp['id']]['goods_attr'][$v1] = db('goods_attr')->alias('a')
+                            ->field('b.attr_name,a.attr_value')
+                            ->join('__ATTRIBUTE__ b','a.attr_id = b.id')
+                            ->where('a.id',$v1)
+                            ->select();
+                    }
+
+                }
+
+                $this->assign(['data'=>$res,'totalPrice'=>$totalPrice,'count'=>$count]);
+                return view();
+            }
 
 
         }
@@ -173,7 +218,10 @@ class Cart extends Controller
             $url = request()->url();//TODO 看看这个到底对不对,是对的
 //            halt(url($url,['id'=>123],false));
             session('url',$url);
+            // 获取提交的数据，存入cookie中
             $newData = request()->post();
+            cookie('toBuy',serialize($newData));
+            // 思路：分两次入库，首先把cookie原来的所有数据入库，再单独入库提交过来的数据。
             $data = unserialize(cookie('cart'));
             // 根据传来的参数，修改原data数据
             foreach($newData['key'] as $k=>$v) // 这个是key是cookie中的key，形如105-160,162,164,

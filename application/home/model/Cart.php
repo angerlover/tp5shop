@@ -30,7 +30,7 @@ class Cart extends Model
         // 登录从数据库取
         if($userid = session('id'))
         {
-            $data = db('cart')->where('member_id',$userid)->select();
+            $data = db('cart')->where('member_id',$userid)->order('id','desc')->select();
 //            dump($data);die;
             $res = [];
             $totalPrice = null;
@@ -64,6 +64,8 @@ class Cart extends Model
         {
             $data = isset($_COOKIE['cart'])?unserialize($_COOKIE['cart']):[];
 //            var_dump($data);die;
+            // 倒叙
+            $data = array_reverse($data,true);
             $res =  [];
             $totalPrice = 0;
             foreach($data as $k=>$v)
@@ -89,7 +91,7 @@ class Cart extends Model
                 $res[$k]['amount'] = $v;
                 // 获取商品的价格（模型自定义的方法）TODO 但是只能获取登录了会员的价格啊
                 $res[$k]['price'] = model('Member')->getPrice($goodsid);
-                if(empty($res[$k]['price']))
+                if(empty($res[$k]['price']) || $res[$k]['price']==0)
                 {
                     $res[$k]['price'] = db('goods')->where('id',$goodsid)->value('shop_price');
                 }

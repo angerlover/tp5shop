@@ -16,7 +16,7 @@ class Order extends Controller
         $model = model('Order');
         if($model->allowField(true)->save(input('post.')))
         {
-            return $this->success('下单成功！',url('orderSuccess'));
+            return $this->success('下单成功','orderSuccess');
         }
         else
         {

@@ -52,7 +52,7 @@
                 <tbody>
                 <?php foreach($data as $k=>$v):;?>
                 <tr>
-                    <td class="col7"><input type="checkbox"></td>
+                    <td class="col7"><input type="checkbox" checked="checked"></td>
                     <td class="col6"><a href=""><img src="__PUBLIC__/Upload/{$v.logo}" alt="" /></a>  <strong><a href="">{$v.goods_name}</a></strong></td>
                     <td class="col5">
                         <?php foreach($v['goods_attr'] as $k1=>$v1):;?>
@@ -105,10 +105,11 @@
         $.each(uncheck,function(k,v){
             console.log($(v).parent().parent().find('input.amount').val());
 //            alert($(v).parent().find('input.amount').val());
-
+            // 把两个要提交过去的表单disabled掉
+            $(v).parent().parent().find('input').attr('disabled','disabled');
+            $(v).parent().parent().next().attr('disabled','disabled');
 
         });
-        return false;
 
     });
 </script>
