@@ -6,8 +6,9 @@ use think\Model;
 
 class Cart extends Model
 {
+    protected $autoWriteTimestamp = false;
 
-    /**5
+    /**
      * 检查库存量
      */
     public function checkGoodsNumber($goodsid,$number,$goods_attr_id)

@@ -22,6 +22,9 @@ class Good extends Nav
     {
         $goodsid = request()->param('id');
         $info = db('goods')->where('id',$goodsid)->find();
+        // 面包屑导航,取出数据后倒叙
+        $bread = model('admin/Category')->getParentPath($info['cat_id']);
+        $bread = array_reverse($bread);
         // 获取会员价格
         $memberPrice = db('member_price')->alias('a')
                         ->join('__MEMBER_LEVEL__ b','a.level_id = b.id','LEFT')->where('a.goods_id',$goodsid)->select();
@@ -61,6 +64,7 @@ class Good extends Nav
             'goodsAttr' => $_goodAttrs,
             'goodsUniqueAttr' => $_goodsUniqueAttrs,
             'isNav' => false,
+            'bread' => $bread,
         ]);
 
         return view();

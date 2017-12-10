@@ -161,4 +161,22 @@ class Category extends Model
 
         return $res;
     }
+
+
+    /**
+     * 寻找一个分类的所有父类（面包屑导航）
+     */
+    function getParentPath($catId)
+    {
+        static $res = [];
+        $info = $this->field('id,cat_name,parent_id')->where('id',$catId)->find()->toArray();
+        $res[] = $info;
+        if($info['parent_id']>0)
+        {
+            $this->getParentPath($info['parent_id']);
+        }
+
+        return $res;
+    }
+
 }

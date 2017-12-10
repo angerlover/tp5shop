@@ -13,6 +13,7 @@ class Index extends Nav
         $catModel = model('admin/Category');
         // 获取推荐楼层的数据
         $floorData = $catModel->getFloorData();
+
         // 传值
 //        var_dump($floorData);die;
         $this->assign(['floorData'=>$floorData,'isNav' => true]);

@@ -6,6 +6,7 @@ use think\Controller;
 use think\Request;
 use app\demo\model\Category;
 use think\Db;
+use app\home\model\Cart;
 
 /**
  * Class DbTest
@@ -42,4 +43,19 @@ class DbTest extends Controller
         return $num;
 
     }
+
+    /**
+     * 看一看模型和数据库的区别
+     */
+    public function db2()
+    {
+        $res1 = model('home/Cart')->getByMemberId(4); // 返回的是模型
+        $res2 = db('cart')->getByMemberId(4); // 我操尴尬了，只能取到一个记录
+        $res3 = db('cart')->where('member_id',4)->select();
+        $cart = model('home/Cart');
+        $cart::create(['member_id'=>5]);
+        halt($res3);
+    }
+
+
 }
