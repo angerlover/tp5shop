@@ -9,16 +9,16 @@
         <div class="cat_bd {if condition="$isNav == false" }none {/if}">
             {foreach $navData as $v}
             <div class="cat item1">
-                <h3><a href="{php}{/php}">{$v.cat_name}</a> <b></b></h3>
+                <h3><a target="_blank" href="<?php echo url('Search/cat_search',['cat_id'=>$v['id']],false);?>">{$v.cat_name}</a> <b></b></h3>
                 <div class="cat_detail">
                     {notempty name="$v.children"}
                     {foreach $v.children as $v1}
                     <dl class="dl_1st">
-                        <dt><a href="">{$v1.cat_name}</a></dt>
+                        <dt><a target="_blank" href="<?php echo url('Search/cat_search',['cat_id'=>$v1['id']],false);?>">{$v1.cat_name}</a></dt>
                         <dd>
                             {notempty name="$v1.children"}
                             {foreach $v1.children as $v2}
-                            <a href="">{$v2.cat_name}</a>
+                            <a target="_blank" href="<?php echo url('Search/cat_search',['cat_id'=>$v2['id']],false);?>">{$v2.cat_name}</a>
                             {/foreach}
                             {/notempty}
                         </dd>

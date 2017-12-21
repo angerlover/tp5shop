@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c4a9234-ab77-4308-a3ba-e5899f2fcca6" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/home/view/Search/cat_search.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/model/Category.php" afterPath="$PROJECT_DIR$/application/admin/model/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/admin/model/Goods.php" afterPath="$PROJECT_DIR$/application/admin/model/Goods.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/demo/controller/DbTest.php" afterPath="$PROJECT_DIR$/application/demo/controller/DbTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/controller/Good.php" afterPath="$PROJECT_DIR$/application/home/controller/Good.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/controller/Index.php" afterPath="$PROJECT_DIR$/application/home/controller/Index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/model/Cart.php" afterPath="$PROJECT_DIR$/application/home/model/Cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/common.php" afterPath="$PROJECT_DIR$/application/home/common.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/controller/Cart.php" afterPath="$PROJECT_DIR$/application/home/controller/Cart.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/view/Good/index.html" afterPath="$PROJECT_DIR$/application/home/view/Good/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/home/view/public/nav.html" afterPath="$PROJECT_DIR$/application/home/view/public/nav.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,18 +36,23 @@
       <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/admin/model/Category.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="180" column="0" lean-forward="true" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="4466">
+              <caret line="288" column="47" lean-forward="false" selection-start-line="288" selection-start-column="47" selection-end-line="288" selection-end-column="47" />
+              <folding>
+                <element signature="e#159#1254#0#PHP" expanded="false" />
+                <element signature="e#1324#2164#0#PHP" expanded="false" />
+                <element signature="e#2172#3734#0#PHP" expanded="false" />
+                <element signature="e#3797#4228#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Good.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/home/controller/Good.php">
+      <file leaf-file-name="Search.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/home/controller/Search.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="232">
-              <caret line="66" column="30" lean-forward="false" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+              <caret line="21" column="16" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="21" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -57,18 +61,33 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/home/view/Good/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+            <state relative-caret-position="15196">
+              <caret line="524" column="19" lean-forward="false" selection-start-line="524" selection-start-column="19" selection-end-line="524" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Goods.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/admin/model/Goods.php">
+      <file leaf-file-name="cat_search.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/home/view/Search/cat_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="2001">
+              <caret line="188" column="97" lean-forward="false" selection-start-line="188" selection-start-column="97" selection-end-line="188" selection-end-column="97" />
+              <folding>
+                <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#7;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/home/common.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="580">
+              <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -85,8 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>数字商品</find>
-      <find>debug</find>
       <find>dirname(__FILE__)</find>
       <find>pear</find>
       <find>最近浏览</find>
@@ -97,7 +114,6 @@
       <find>注册</find>
       <find>create</find>
       <find>function create</find>
-      <find>js/</find>
       <find>价格</find>
       <find>shop_price</find>
       <find>会员价</find>
@@ -115,6 +131,9 @@
       <find>*</find>
       <find>hidden</find>
       <find>style/</find>
+      <find>js/</find>
+      <find>__PUBLIC__/style/</find>
+      <find>品牌</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;img src=&quot;__PUBLIC__/images</replace>
@@ -124,6 +143,7 @@
       <replace>href=&quot;__PUBLIC__/Home</replace>
       <replace>href=&quot;__PUBLIC__/Home/Style/</replace>
       <replace>__PUBLIC__/Home/js/</replace>
+      <replace>__PUBLIC__/js/</replace>
       <replace>__PUBLIC__/Home/style/</replace>
     </replaceStrings>
   </component>
@@ -147,11 +167,9 @@
         <option value="$PROJECT_DIR$/application/api/controller/Sms.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Push.php" />
         <option value="$PROJECT_DIR$/application/api/controller/Ip.php" />
-        <option value="$PROJECT_DIR$/application/home/common.php" />
         <option value="$PROJECT_DIR$/application/home/controller/Goods.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
         <option value="$PROJECT_DIR$/application/home/controller/Nav.php" />
-        <option value="$PROJECT_DIR$/application/home/view/public/nav.html" />
         <option value="$PROJECT_DIR$/application/home/view/Index/index.html" />
         <option value="$PROJECT_DIR$/application/home/view/public/top.html" />
         <option value="$PROJECT_DIR$/application/home/view/Member/register.html" />
@@ -173,9 +191,14 @@
         <option value="$PROJECT_DIR$/application/demo/controller/DbTest.php" />
         <option value="$PROJECT_DIR$/application/admin/model/Goods.php" />
         <option value="$PROJECT_DIR$/application/home/controller/Index.php" />
-        <option value="$PROJECT_DIR$/application/admin/model/Category.php" />
-        <option value="$PROJECT_DIR$/application/home/view/Good/index.html" />
         <option value="$PROJECT_DIR$/application/home/controller/Good.php" />
+        <option value="$PROJECT_DIR$/application/home/view/Search/search.html" />
+        <option value="$PROJECT_DIR$/application/home/view/public/nav.html" />
+        <option value="$PROJECT_DIR$/application/home/common.php" />
+        <option value="$PROJECT_DIR$/application/home/view/Good/index.html" />
+        <option value="$PROJECT_DIR$/application/admin/model/Category.php" />
+        <option value="$PROJECT_DIR$/application/home/view/Search/cat_search.html" />
+        <option value="$PROJECT_DIR$/application/home/controller/Search.php" />
       </list>
     </option>
   </component>
@@ -216,6 +239,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -225,6 +249,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tp5shop" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tp5shop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tp5shop" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="runtime" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -257,6 +295,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tp5shop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tp5shop" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="home" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Search" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -332,31 +396,30 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tp5app" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/phpStudy/PHPTutorial/WWW/tp5shop/application/home/controller/Order.php&#10;switch boo&#9;ACTION&#9;SwitchBootJdk&#10;html&#9;FILE&#9;file://D:/phpStudy/PHPTutorial/WWW/tp5shop/application/home/view/Index/index.html" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Search" />
+      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Cart" />
+      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Member" />
+      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Good" />
+      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Order" />
       <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\public\Home" />
       <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\vendor\ip" />
       <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\vendor\sms" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Cart" />
-      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Member" />
-      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\application\home\view\Good" />
-      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop" />
-      <recent name="D:\phpStudy\PHPTutorial\WWW\tp5shop\vendor\getui" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -498,11 +561,19 @@
       <workItem from="1512864319148" duration="7018000" />
       <workItem from="1512897398946" duration="2795000" />
       <workItem from="1512906285838" duration="2202000" />
+      <workItem from="1512956320025" duration="29002000" />
+      <workItem from="1513059811976" duration="3166000" />
+      <workItem from="1513300459446" duration="20000" />
+      <workItem from="1513382387976" duration="20000" />
+      <workItem from="1513561039411" duration="9000" />
+      <workItem from="1513576114948" duration="20000" />
+      <workItem from="1513641700197" duration="19000" />
+      <workItem from="1513731846786" duration="18000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217673000" />
+    <option name="totallyTimeSpent" value="249947000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,10 +585,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1046" extended-state="0" />
+    <frame x="-11" y="-11" width="1942" height="1046" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20896329" sideWeight="0.49570552" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23974082" sideWeight="0.49570552" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -533,7 +604,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881773" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3278272" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -550,20 +621,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/home/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/command.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="522">
@@ -638,14 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/home/common.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="4" column="3" lean-forward="false" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -771,13 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/home/view/public/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-217">
-          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/home/view/public/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -797,7 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1798">
           <caret line="62" column="110" lean-forward="false" selection-start-line="62" selection-start-column="27" selection-end-line="62" selection-end-column="110" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -819,7 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1885">
           <caret line="65" column="17" lean-forward="false" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -857,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="319">
           <caret line="11" column="12" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -865,15 +904,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="46" column="7" lean-forward="true" selection-start-line="46" selection-start-column="7" selection-end-line="46" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/admin/model/Goods.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
+        <state relative-caret-position="435">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,34 +922,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/admin/model/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="180" column="0" lean-forward="true" selection-start-line="180" selection-start-column="0" selection-end-line="180" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_9.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-194">
           <caret line="125" column="9" lean-forward="false" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/home/controller/Good.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="20" column="27" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/home/view/public/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="20" column="115" lean-forward="false" selection-start-line="20" selection-start-column="115" selection-end-line="20" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/home/common.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="20" column="3" lean-forward="false" selection-start-line="20" selection-start-column="3" selection-end-line="20" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/home/view/Good/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="15196">
+          <caret line="524" column="19" lean-forward="false" selection-start-line="524" selection-start-column="19" selection-end-line="524" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/home/controller/Good.php">
+    <entry file="file://$PROJECT_DIR$/application/home/view/Search/cat_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2001">
+          <caret line="188" column="97" lean-forward="false" selection-start-line="188" selection-start-column="97" selection-end-line="188" selection-end-column="97" />
+          <folding>
+            <element signature="n#div#1;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#2;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/admin/model/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4466">
+          <caret line="288" column="47" lean-forward="false" selection-start-line="288" selection-start-column="47" selection-end-line="288" selection-end-column="47" />
+          <folding>
+            <element signature="e#159#1254#0#PHP" expanded="false" />
+            <element signature="e#1324#2164#0#PHP" expanded="false" />
+            <element signature="e#2172#3734#0#PHP" expanded="false" />
+            <element signature="e#3797#4228#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/home/controller/Search.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
-          <caret line="66" column="30" lean-forward="false" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
+          <caret line="21" column="16" lean-forward="true" selection-start-line="20" selection-start-column="27" selection-end-line="21" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -18,3 +18,15 @@ function getRedis()
     }
 }
 
+/**
+ * 去掉param参数后返回URL
+ */
+function parseUrl($param)
+{
+    // 获取当前的url
+    $url = request()->url();
+    $pattern = "/\/$param\/[^\/]+/";
+    return preg_replace($pattern,'',$url);
+}
+
+

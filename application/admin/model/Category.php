@@ -179,4 +179,163 @@ class Category extends Model
         return $res;
     }
 
+
+    /**
+     * 获取一个分类下所有的属性，价格区间，品牌
+     */
+    function getSearchConditonByCatId($catId)
+    {
+        $res = [];
+        $where = [];
+        $where['b.id'] = ['eq',$catId]; // 分类id
+        // 首先获取分类所有商品id集合(二维数组)
+        $temp = db('goods')->alias('a')
+                ->field('a.id')
+                ->join('__CATEGORY__ b','a.cat_id=b.id','left')
+                ->where('a.cat_id',$catId)->select();
+        // 二维转一维
+        $ids = [];
+        foreach($temp as $v)
+        {
+            $ids[] = $v['id'];
+        }
+//        halt($ids);
+        // 存入where
+        $where['a.id'] = ['in',$ids];
+        // 大工程：根据传递过来的get参数来动态获取商品
+        // 品牌
+        if($brand = input('brand'))
+        {
+//            $brandId = db('brand')->where('brand_name',$brand)->value('id');
+//            halt($brandId);
+            $where['a.brand_id'] = $brand;
+        }
+        // 价格
+        if($price = input('price'))
+        {
+            $temp = explode('-',$price);
+            $where['a.shop_price'] = ['between',$temp];
+        }
+        // 属性：提取get参数的属性部分
+        $attrParams = null; // 所有的属性筛选之后的id集合
+        foreach(input('') as $k=>$v)
+        {
+            if(strpos($k,'attr_')===0)
+            {
+                $attrId = substr($k,strpos($k,'_')+1);
+                $attrValue = mb_substr($v,mb_strpos($v,'-')+1);
+                $tempGids = db('goods_attr')->field('goods_id')->where(['attr_id'=>$attrId,'attr_value'=>$attrValue])->select();
+                // 如果确实有，改变一下数据结构之后存起来
+                if($tempGids)
+                {
+                    $gids = [];
+                    foreach ($tempGids as $v)
+                    {
+                        $gids[] = $v['goods_id'];
+                    }
+                    if($attrParams == null) // 第一次存
+                    {
+                        $attrParams = $gids;
+
+                    }
+                    else // 非第一次存,先交集一次
+                    {
+                        $attrParams = array_intersect($attrParams,$gids);
+                        // 交集之后如果空了，也不需要再进行下一次遍历了
+                        if(empty($attrParams))
+                        {
+                            $where['a.id'] = ['eq',0];
+                            break;
+                        }
+                    }
+
+                }
+                else // 当前属性筛选没有id，直接给一个不可能满足的条件
+                {
+                    $where['a.id'] = ['eq',0];
+                    break;
+                }
+            }
+        }
+//        halt($attrParams);
+        // 遍历所有这些属性之后如果还有id集合，则存到where条件中
+        if($attrParams)
+        {
+            $where['a.id'] = ['in',array_intersect($attrParams,$ids)];
+        }
+        $res['goods'] = db('goods')->alias('a')->field('a.sm_logo,a.goods_name,a.id,a.shop_price')
+                        ->join('__CATEGORY__ b','a.cat_id = b.id','left')
+                        ->join('__BRAND__ c','a.brand_id = c.id','left')
+                        ->where($where)->select();
+        // 获取可选属性
+        $tempAttrs = db('goods_attr')->alias('a')->field('DISTINCT GROUP_CONCAT(a.attr_value) as value,b.attr_name,b.id')->join('__ATTRIBUTE__ b','a.attr_id=b.id','left')->where('a.goods_id','in',$ids)->where('b.attr_type','可选')->group('b.attr_name')->select();
+//        halt($tempAttrs);
+        // 改造属性的数据结构
+        $attrs = [];
+        foreach($tempAttrs as $k=>$v)
+        {
+            $attrs[$v['attr_name']] = array_merge(['id'=>$v['id']],['value'=>array_unique(explode(',',$v['value']))]);
+        }
+//        halt($attrs);
+        $res['attr'] = $attrs;
+        // 获取品牌
+        $tempBrand = db('goods')->alias('a')->field('DISTINCT(b.brand_name),b.id')
+                    ->join('__BRAND__ b','a.brand_id=b.id','left')
+                    ->where('a.id','in',$ids)->select();
+        // 改造品牌的数据结构
+        $brand = [];
+        foreach ($tempBrand as $k=>$v)
+        {
+            $brand[$v['id']] = $v['brand_name'];
+        }
+        $res['brand'] = $brand;
+        /**********获取价格区间**********/
+        // 商品数量
+        $count = db('goods')->where('id','in',$ids)->count();
+        // 最低价和最高价
+        $lowPrice = db('goods')->min('shop_price');
+        $highPrice = db('goods')->max('shop_price');
+        $scope = $highPrice-$lowPrice;
+        // 根据差值计算分段
+        if($scope<=100)
+        {
+            $section = 2;
+        }
+        elseif($scope <200)
+        {
+            $section = 3;
+        }
+        elseif($scope <500)
+        {
+            $section = 5;
+        }
+        elseif($scope <1000)
+        {
+            $section = 7;
+        }
+        else
+        {
+            $section = 10;
+        }
+        $price = [];
+        // 计算每段的范围
+        $priceSection = ceil($scope/$section);
+        $initPrice = 0;
+        for($i=0;$i<$section;$i++)
+        {
+            // 计算每一段的结束价格
+            $endPrice = $initPrice + $priceSection;
+            // 取整
+            $endPrice = ceil($endPrice);
+            $price[$i] = $initPrice.'-'.$endPrice;
+
+            // 计算下一个开始的价格
+            $initPrice = $endPrice + 1;
+        }
+        $res['price'] = $price;
+
+
+        return $res;
+    }
+
 }

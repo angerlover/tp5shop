@@ -228,7 +228,7 @@ class Cart extends Controller
             {
                 $data[$v] = $newData['amount'][$k];
             }
-            // 把修改好的值重新写入cookie
+            // 把修改好的值重新写入到cookie中
             cookie('cart',serialize($data));
             // 提示用户登录，然后跳转回来就可以直接到确认订单页面了
             return $this->error('请登录后再操作！',url('Member/login'));

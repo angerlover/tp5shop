@@ -512,18 +512,20 @@
             dataType:'json',
             success:function(data)
             {
-                console.log(data);
                 var html = '';
                 $(data).each(function (k,v)
                 {
-                    html += '<dl>';
-                    html += '<dt><a target="_blank" href="<?php echo url('Good/index',['id'=>$info['id']]);?>"> <img src="__PUBLIC__/Upload/'+v.sm_logo +'"></a> </dt>';
-                    html += '<dt><a target="_blank" href="<?php echo url('Good/index',['id'=>$info['id']]);?>"> '+v.goods_name +'</dt>';
-                    html += '</dl>';
-
-                })
-                $('#history').html('');// 清空
-                $('#history').html(html);
+                    console.log(v.goods_name);
+                    html += '<div>';
+                    html += v.goods_name;
+//                    html += '<a target="_blank" href="<?php echo url("Good/index",["id"=>$info["id"]]);?>" > <img src="__PUBLIC__/Upload/'+v.goods_name +'"></a>';
+//                    html += "<a target='_blank' href='<?php echo url('Good/index',['id'=>$info['id']]);?>'> "+v.goods_name;
+                    html += '</div>';
+                    console.log(html);
+                });
+//                html = $(html);
+//                console.log(html);
+                $('#history').html($(html));
             }
 
         });
